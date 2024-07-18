@@ -1,0 +1,228 @@
+{
+  "menu": [
+    {
+      "name": "Dashboards",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "dashboard",
+      "badge": [
+        "primary",
+        "5"
+      ],
+      "submenu": [
+        
+        {
+          "url": "app/academy/dashboard",
+          "name": "Academy",
+          "slug": "app-academy-dashboard"
+        }
+      ]
+    },
+
+    {
+      "name": "Laravel Example",
+      "icon": "menu-icon tf-icons ti ti-brand-php",
+      "slug": "laravel-example",
+      "submenu": [
+        {
+          "url": "laravel/user-management",
+          "name": "User Management",
+          "slug": "laravel-example-user-management"
+        }
+      ]
+    },
+    {
+      "menuHeader": "Apps & Pages"
+    },
+    {
+      "name": "eCommerce",
+      "icon": "menu-icon tf-icons ti ti-building-factory-2",
+      "slug": "app-ecommerce",
+      "submenu": [
+        
+        {
+          "name": "Products",
+          "slug": "app-ecommerce-product",
+          "submenu": [
+           
+            {
+              "url": "app/ecommerce/product/add",
+              "name": "Add Product",
+              "slug": "app-ecommerce-product-add"
+            }
+          
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Academy",
+      "icon": "menu-icon tf-icons ti ti-book",
+      "slug": "app-academy",
+      "submenu": [
+        {
+          "url": "app/academy/dashboard",
+          "name": "Dashboard",
+          "slug": "app-academy-dashboard"
+        },
+        {
+          "url": "app/academy/course",
+          "name": "My Course",
+          "slug": "app-academy-course"
+        },
+        {
+          "url": "app/academy/course-details",
+          "name": "Course Details",
+          "slug": "app-academy-course-details"
+        }
+      ]
+    },
+    
+    {
+      "name": "Pages",
+      "icon": "menu-icon tf-icons ti ti-file",
+      "slug": "pages",
+      "submenu": [
+        {
+          "name": "User Profile",
+          "slug": "pages-profile",
+          "submenu": [
+            {
+              "url": "pages/profile-user",
+              "name": "Profile",
+              "slug": "pages-profile-user"
+            },
+        
+            {
+              "url": "pages/profile-connections",
+              "name": "Connections",
+              "slug": "pages-profile-connections"
+            }
+          ]
+        }
+    
+      ]
+    },
+    {
+      "name": "Authentications",
+      "icon": "menu-icon tf-icons ti ti-lock",
+      "slug": "auth",
+      "submenu": [
+        {
+          "name": "Login",
+          "slug": "auth-login",
+          "submenu": [
+            {
+              "url": "auth/login-basic",
+              "name": "Basic",
+              "slug": "auth-login-basic",
+              "target": "_blank"
+            },
+            {
+              "url": "auth/login-cover",
+              "name": "Cover",
+              "slug": "auth-login-cover",
+              "target": "_blank"
+            }
+          ]
+        },
+        {
+          "name": "Register",
+          "slug": "auth-register",
+          "submenu": [
+            {
+              "url": "auth/register-basic",
+              "name": "Basic",
+              "slug": "auth-register-basic",
+              "target": "_blank"
+            },
+            {
+              "url": "auth/register-cover",
+              "name": "Cover",
+              "slug": "auth-register-cover",
+              "target": "_blank"
+            },
+            {
+              "url": "auth/register-multisteps",
+              "name": "Multi-steps",
+              "slug": "auth-register-multisteps",
+              "target": "_blank"
+            }
+          ]
+        },
+        {
+          "name": "Verify Email",
+          "slug": "auth-verify-email",
+          "submenu": [
+            {
+              "url": "auth/verify-email-basic",
+              "name": "Basic",
+              "slug": "auth-verify-email-basic",
+              "target": "_blank"
+            },
+            {
+              "url": "auth/verify-email-cover",
+              "name": "Cover",
+              "slug": "auth-verify-email-cover",
+              "target": "_blank"
+            }
+          ]
+        },
+        {
+          "name": "Reset Password",
+          "slug": "auth-reset-password",
+          "submenu": [
+            {
+              "url": "auth/reset-password-basic",
+              "name": "Basic",
+              "slug": "auth-reset-password-basic",
+              "target": "_blank"
+            },
+            {
+              "url": "auth/reset-password-cover",
+              "name": "Cover",
+              "slug": "auth-reset-password-cover",
+              "target": "_blank"
+            }
+          ]
+        },
+        {
+          "name": "Forgot Password",
+          "slug": "auth-forgot-password",
+          "submenu": [
+            {
+              "url": "auth/forgot-password-basic",
+              "name": "Basic",
+              "slug": "auth-forgot-password-basic",
+              "target": "_blank"
+            },
+            {
+              "url": "auth/forgot-password-cover",
+              "name": "Cover",
+              "slug": "auth-forgot-password-cover",
+              "target": "_blank"
+            }
+          ]
+        },
+        {
+          "name": "Two Steps",
+          "slug": "auth-two-steps",
+          "submenu": [
+            {
+              "url": "auth/two-steps-basic",
+              "name": "Basic",
+              "slug": "auth-two-steps-basic",
+              "target": "_blank"
+            },
+            {
+              "url": "auth/two-steps-cover",
+              "name": "Cover",
+              "slug": "auth-two-steps-cover",
+              "target": "_blank"
+            }
+          ]
+        }
+      ]
+    }
+    
+  ]
+}
