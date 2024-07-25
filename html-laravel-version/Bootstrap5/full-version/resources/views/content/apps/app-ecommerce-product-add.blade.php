@@ -47,11 +47,11 @@
           <h5 class="card-title mb-0">Question Information</h5>
         </div>
         <div class="card-body">
-          <form action="" method="POST">
+          <form action="{{route('question-create')}}" method="POST">
             @csrf
             <div class="mb-3">
               <label class="form-label" for="question-text">Question Text</label>
-              <input type="text" class="form-control" id="question-text" name="text" placeholder="Enter the question text" required>
+              <input type="text" class="form-control" id="question-text" name="question-text" placeholder="Enter the question text" required>
             </div>
             <div class="mb-3">
               <label class="form-label" for="quiz-id">Select Quiz</label>
@@ -66,7 +66,7 @@
               <div class="repeater">
                 <div data-repeater-list="answers">
                   <div data-repeater-item class="mb-3">
-                    <input type="text" name="text" class="form-control mb-2" placeholder="Answer text" required>
+                    <input type="text" name="answer-text" class="form-control mb-2" placeholder="Answer text" required>
                     <input type="checkbox" name="is_correct" class="form-check-input" value="1"> Correct Answer
                     <div class="mt-2">
                       <button data-repeater-delete type="button" class="btn btn-danger btn-sm">Delete</button>

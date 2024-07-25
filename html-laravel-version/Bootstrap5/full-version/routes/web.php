@@ -31,6 +31,9 @@ use App\Http\Controllers\authentications\TwoStepsBasic;
 use App\Http\Controllers\authentications\TwoStepsCover;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\charts\ChartJs;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\AnswerController;
+
 
 // Main Page Route
 Route::get('/', [AcademyDashboard::class, 'index'])->name('app-academy-dashboard');
@@ -81,5 +84,11 @@ Route::middleware([
 });
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
-    Route::get('/app/ecommerce/product/add', [EcommerceProductAdd::class, 'index'])->name('app-ecommerce-product-add');
+    Route::get('/app/ecommerce/product/add', [QuestionController::class, 'index'])->name('app-ecommerce-product-add');
+    
+    Route::post('/add-question', [QuestionController::class, 'create'])->name('question-create');
+    Route::get('/add-answer', [AnswerController::class, 'create']);
+    Route::post('/add-answer', [AnswerController::class, 'store']); 
+
+
 });
