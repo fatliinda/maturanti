@@ -3,27 +3,11 @@
 @section('title', 'Add Questions - Admin Panel')
 
 @section('vendor-style')
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/typography.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/katex.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/editor.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/dropzone/dropzone.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/tagify/tagify.css') }}" />
 @endsection
 
 @section('vendor-script')
-<script src="{{ asset('assets/vendor/libs/quill/katex.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/quill/quill.js') }}"></script>
 <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/dropzone/dropzone.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/jquery-repeater/jquery-repeater.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/tagify/tagify.js') }}"></script>
-@endsection
-
-@section('page-script')
-<script src="{{ asset('assets/js/app-ecommerce-product-add.js') }}"></script>
 @endsection
 
 @section('content')
@@ -47,7 +31,7 @@
           <h5 class="card-title mb-0">Question Information</h5>
         </div>
         <div class="card-body">
-          <form action="{{route('question-create')}}" method="POST">
+          <form id="question-form" action="{{ route('question-create') }}" method="POST">
             @csrf
             <div class="mb-3">
               <label class="form-label" for="question-text">Question Text</label>
@@ -61,26 +45,19 @@
                 @endforeach
               </select>
             </div>
+
+            @for($i = 0; $i < 4; $i++)
             <div class="mb-3">
-              <label class="form-label" for="answers">Answers</label>
-              <div class="repeater">
-                <div data-repeater-list="answers">
-                  <div data-repeater-item class="mb-3">
-                    <input type="text" name="answer-text" class="form-control mb-2" placeholder="Answer text" required>
-                    <input type="checkbox" name="is_correct" class="form-check-input" value="1"> Correct Answer
-                    <div class="mt-2">
-                      <button data-repeater-delete type="button" class="btn btn-danger btn-sm">Delete</button>
-                    </div>
-                  </div>
-                </div>
-                <button data-repeater-create type="button" class="btn btn-primary btn-sm mt-3">Add Answer</button>
-              </div>
+              <label class="form-label" for="answer-text-{{ $i }}">Answer Text {{ $i + 1 }}</label>
+              <input type="text" class="form-control" id="answer-text-{{ $i }}" name="answers[{{ $i }}][answer-text]" placeholder="Enter the answer text" required>
+              <input type="checkbox" id="is-correct-{{ $i }}" name="answers[{{ $i }}][is_correct]" value="1"> Correct Answer
             </div>
+            @endfor
+
             <button type="submit" class="btn btn-primary">Add Question</button>
           </form>
         </div>
       </div>
-      <!-- /Question Form -->
     </div>
   </div>
 </div>
