@@ -17,37 +17,29 @@
         }
       ]
     },
-
-    {
-      "name": "Laravel Example",
-      "icon": "menu-icon tf-icons ti ti-brand-php",
-      "slug": "laravel-example",
-      "submenu": [
-        {
-          "url": "laravel/user-management",
-          "name": "User Management",
-          "slug": "laravel-example-user-management"
-        }
-      ]
-    },
     {
       "menuHeader": "Apps & Pages"
     },
     {
-      "name": "eCommerce",
+      "name": "Kuizet",
       "icon": "menu-icon tf-icons ti ti-building-factory-2",
-      "slug": "app-ecommerce",
+      "slug": "app-quizzes",
       "submenu": [
         
         {
-          "name": "Products",
-          "slug": "app-ecommerce-product",
+          "name": "Pyetjet",
+          "slug": "app-quizzes-question",
           "submenu": [
            
             {
               "url": "app/ecommerce/product/add",
-              "name": "Add Product",
+              "name": "Shto Pyetje",
               "slug": "app-ecommerce-product-add"
+            },
+            {
+            "url": "laravel/user-management",
+            "name": "Edito pyetjet",
+            "slug": "laravel-example-user-management"
             }
           
           ]

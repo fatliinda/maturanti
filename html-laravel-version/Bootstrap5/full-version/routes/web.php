@@ -72,8 +72,7 @@ Route::get('/auth/two-steps-basic', [TwoStepsBasic::class, 'index'])->name('auth
 Route::get('/auth/two-steps-cover', [TwoStepsCover::class, 'index'])->name('auth-two-steps-cover');
 
 // laravel example
-Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name('laravel-example-user-management');
-Route::resource('/user-list', UserManagement::class);
+Route::get('/laravel/user-management', [QuestionController::class, 'manage'])->name('question-managment');
 Route::get('/charts/chartjs', [ChartJs::class, 'index'])->name('charts-chartjs');
 Route::middleware([
     'auth:sanctum',

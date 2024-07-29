@@ -40,6 +40,15 @@ class QuestionController extends Controller
 
         return redirect()->route('app-ecommerce-product-add')->with('success', 'Question added successfully.');
     }
+    public function manage(Request $request){
+        $quizzes = Quiz::all();
+        $selectedQuizId = $request->get('quiz_id');
+
+        $questions = Question::when($selectedQuizId, function ($query, $selectedQuizId) {
+            return $query->where('quiz_id', $selectedQuizId);
+        })->get();
+        return view('content.laravel-example.question-management',compact('quizzes','questions'));
+    }
 
     }
 
