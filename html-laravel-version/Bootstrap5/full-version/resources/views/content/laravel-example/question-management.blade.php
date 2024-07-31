@@ -26,7 +26,6 @@
 @endsection
 
 @section('page-script')
-<script src="{{ asset('js/laravel-user-management.js') }}"></script>
 <script>
   $(document).ready(function() {
     $('.select2').select2({
@@ -61,7 +60,6 @@
     <table class="datatables-users table">
       <thead class="border-top">
         <tr>
-          <th>Kuizi</th>
           <th>Pyetja</th>
           <th>Actions</th>
         </tr>
@@ -69,24 +67,65 @@
       <tbody>
         @foreach($questions as $question)
           <tr>
-            <td>{{ $question->quiz->title }}</td>
             <td>{{ $question->question }}</td>
+            <td>
+              <form method="GET" action="{{ route('question-managment') }}" class="d-inline-block">
+                <input type="hidden" name="edit_question_id" value="{{ $question->id }}">
+                <input type="hidden" name="edit_question" value="{{ $question->question }}">
+                <input type="hidden" name="edit_quiz_id" value="{{ $question->quiz_id }}">
+                <button type="submit" class="btn btn-link p-1 m-1"><i class="fa-regular fa-pen-to-square"></i></button>
+              </form>
+            
+                <button  class="btn btn-link p-1 m-1" data-bs-toggle="modal" data-bs-target="#modalTop"><i class="fa-solid fa-trash"></i></button>
+              
+            </td>
           </tr>
         @endforeach
       </tbody>
     </table>
   </div>
- 
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddUser" aria-labelledby="offcanvasAddUserLabel">
+
+  <!-- Offcanvas to edit question -->
+  <div class="offcanvas offcanvas-end @if(request('edit_question_id')) show @endif" tabindex="-1" id="offcanvasEditQuestion" aria-labelledby="offcanvasEditQuestionLabel" @if(request('edit_question_id')) style="visibility: visible;" aria-modal="true" role="dialog" @endif>
     <div class="offcanvas-header">
-      <h5 id="offcanvasAddUserLabel" class="offcanvas-title">Add User</h5>
+      <h5 id="offcanvasEditQuestionLabel" class="offcanvas-title">Edit Question</h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0">
-      <form class="add-new-user pt-0" id="addNewUserForm">
-        <!-- Form fields for adding a new user -->
+      <form class="edit-question-form pt-0" method="POST" action="">
+        @csrf
+        @method('PUT')
+        <div class="mb-3">
+          <label for="question" class="form-label">Question</label>
+          <textarea name="question" id="question" class="form-control" rows="4" required>{{ request('edit_question') }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
       </form>
     </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal modal-top fade" id="modalTop" tabindex="-1">
+  <div class="modal-dialog modal-sm">
+    <form class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTopTitle"> <i class="fa-solid fa-triangle-exclamation text-warning me-2"></i>
+        Confirm Deletion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <p>Are you sure you want to delete this?</p>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+        <form method="POST" action="">
+      @csrf
+      @method('DELETE')
+        <button type="submit" class="btn btn-primary">Delete</button>
+        </form>
+      </div>
+    </form>
   </div>
 </div>
 @endsection
