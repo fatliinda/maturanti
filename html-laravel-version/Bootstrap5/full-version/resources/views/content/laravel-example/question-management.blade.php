@@ -69,41 +69,34 @@
           <tr>
             <td>{{ $question->question }}</td>
             <td>
-              <form method="GET" action="{{ route('question-managment') }}" class="d-inline-block">
-                <input type="hidden" name="edit_question_id" value="{{ $question->id }}">
-                <input type="hidden" name="edit_question" value="{{ $question->question }}">
-                <input type="hidden" name="edit_quiz_id" value="{{ $question->quiz_id }}">
-                <button type="submit" class="btn btn-link p-1 m-1"><i class="fa-regular fa-pen-to-square"></i></button>
-              </form>
-            
+                <button  class="btn btn-link p-1 m-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEditQuestion"><i class="fa-regular fa-pen-to-square"></i></button>
                 <button  class="btn btn-link p-1 m-1" data-bs-toggle="modal" data-bs-target="#modalTop"><i class="fa-solid fa-trash"></i></button>
-              
             </td>
           </tr>
         @endforeach
       </tbody>
     </table>
   </div>
-
-  <!-- Offcanvas to edit question -->
-  <div class="offcanvas offcanvas-end @if(request('edit_question_id')) show @endif" tabindex="-1" id="offcanvasEditQuestion" aria-labelledby="offcanvasEditQuestionLabel" @if(request('edit_question_id')) style="visibility: visible;" aria-modal="true" role="dialog" @endif>
+<!-- Offcanvas to edit question -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditQuestion" aria-labelledby="offcanvasEditQuestionLabel">
     <div class="offcanvas-header">
       <h5 id="offcanvasEditQuestionLabel" class="offcanvas-title">Edit Question</h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0">
-      <form class="edit-question-form pt-0" method="POST" action="">
+      <form class="edit-question-form pt-0" method="POST" action="{{route('questions-update',[$id=$question->id])}}">
         @csrf
         @method('PUT')
         <div class="mb-3">
           <label for="question" class="form-label">Question</label>
-          <textarea name="question" id="question" class="form-control" rows="4" required>{{ request('edit_question') }}</textarea>
+          <textarea name="question" id="question" class="form-control" required>{{$question->question}}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">Save Changes</button>
       </form>
     </div>
   </div>
 </div>
+
 <!-- Modal -->
 <div class="modal modal-top fade" id="modalTop" tabindex="-1">
   <div class="modal-dialog modal-sm">

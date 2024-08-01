@@ -62,7 +62,24 @@ class QuestionController extends Controller
             return redirect()->route('question-managment')->with('error', 'Question not found.');
         }
     }
-    
-    
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'question' => 'required|string',
+        ]);
 
+        $question = Question::find($id);
+
+        if ($question) {
+           
+            $question->question = $request->input('question');
+            $question->save();
+
+            return redirect()->route('question-managment')->with('success', 'Question updated successfully.');
+        } else {
+            
+            return redirect()->route('question-managment')->with('error', 'Question not found.');
+        }
+    }
 }
+

@@ -87,6 +87,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     
     Route::post('/add-question', [QuestionController::class, 'create'])->name('question-create');
     Route::delete('/questions/{id}', [QuestionController::class, 'destroy'])->name('questions-destroy');
+    Route::put('/questions/{id}', [QuestionController::class, 'update'])->name('questions-update');
     Route::get('/add-answer', [AnswerController::class, 'create']);
     Route::post('/add-answer', [AnswerController::class, 'store']); 
 
