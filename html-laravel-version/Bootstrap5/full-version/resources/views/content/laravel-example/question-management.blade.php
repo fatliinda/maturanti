@@ -107,25 +107,26 @@
 <!-- Modal -->
 <div class="modal modal-top fade" id="modalTop" tabindex="-1">
   <div class="modal-dialog modal-sm">
-    <form class="modal-content">
+    <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalTopTitle"> <i class="fa-solid fa-triangle-exclamation text-warning me-2"></i>
-        Confirm Deletion</h5>
+        <h5 class="modal-title" id="modalTopTitle">
+          <i class="fa-solid fa-triangle-exclamation text-warning me-2"></i> Confirm Deletion
+        </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <p>Are you sure you want to delete this?</p>
-        
+        <p>Are you sure you want to delete this?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-        <form method="POST" action="">
-      @csrf
-      @method('DELETE')
-        <button type="submit" class="btn btn-primary">Delete</button>
+        <form method="POST" action="{{ route('questions-destroy', ['id' => $question->id]) }}">
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="btn btn-primary">Delete</button>
         </form>
       </div>
-    </form>
+    </div>
   </div>
 </div>
+
 @endsection

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\Quiz;
+use Illuminate\Support\Facades\Log;
+
 
 class QuestionController extends Controller
 {
@@ -49,6 +51,18 @@ class QuestionController extends Controller
         })->get();
         return view('content.laravel-example.question-management',compact('quizzes','questions'));
     }
-
+    public function destroy($id)
+    {
+        $question = Question::find($id);
+    
+        if ($question) {
+            $question->delete();
+            return redirect()->route('question-managment')->with('success', 'Question deleted successfully.');
+        } else {
+            return redirect()->route('question-managment')->with('error', 'Question not found.');
+        }
     }
+    
+    
 
+}
