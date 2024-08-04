@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Questions Management - Crud App')
+@section('title', 'Quizzes Management - Crud App')
 
 @section('vendor-style')
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
@@ -26,47 +26,28 @@
 @endsection
 
 @section('page-script')
-<script>
-  $(document).ready(function() {
-    $('.select2').select2({
-      placeholder: $(this).data('placeholder')
-    });
-
-    // Auto-submit form on select change
-    $('select[name="quiz_id"]').on('change', function() {
-      $(this).closest('form').submit();
-    });
-  });
-</script>
 @endsection
 
 @section('content')
 <!-- Users List Table -->
 <div class="card-datatable table-responsive">
-    <form method="GET" action="{{ route('question-managment') }}" class="d-flex justify-content-end mb-4">
-        <div class="d-flex align-items-center">
-            <select name="quiz_id" class="select2 form-select" data-placeholder="All Quizzes" style="max-width: 250px;">
-                <option value="">All Quizzes</option>
-                @foreach($quizzes as $quiz)
-                    <option value="{{ $quiz->id }}" {{ request('quiz_id') == $quiz->id ? 'selected' : '' }}>{{ $quiz->title }}</option>
-                @endforeach
-            </select>
-        </div>
-    </form>
+    
 
     <table class="datatables-users table">
       <thead class="border-top">
         <tr>
-          <th>Pyetja</th>
+          <th>Kuizi</th>
+          <th>Lenda</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        @foreach($questions as $question)
+        @foreach($quizzes as $quiz)
           <tr>
-            <td>{{ $question->question }}</td>
+            <td>{{ $quiz->title}}</td>
+            <td>{{$quiz->course->title}}</td>
             <td>
-                <button  class="btn btn-link p-1 m-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEditQuestion"><i class="fa-regular fa-pen-to-square"></i></button>
+                <button  class="btn btn-link p-1 m-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEditQuiz"><i class="fa-regular fa-pen-to-square"></i></button>
                 <button  class="btn btn-link p-1 m-1" data-bs-toggle="modal" data-bs-target="#modalTop"><i class="fa-solid fa-trash"></i></button>
             </td>
           </tr>
@@ -75,19 +56,27 @@
     </table>
   </div>
 <!-- Offcanvas to edit question -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditQuestion" aria-labelledby="offcanvasEditQuestionLabel">
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditQuiz" aria-labelledby="offcanvasEditQuestionLabel">
     <div class="offcanvas-header">
-      <h5 id="offcanvasEditQuestionLabel" class="offcanvas-title">Edit Question</h5>
+      <h5 id="offcanvasEditQuestionLabel" class="offcanvas-title">Edit Quiz</h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0">
-      <form class="edit-question-form pt-0" method="POST" action="{{route('questions-update',[$id=$question->id])}}">
+      <form class="edit-question-form pt-0" method="POST" action="{{route('app-quiz-update',[$id = $quiz->id])}}">
         @csrf
         @method('PUT')
         <div class="mb-3">
-          <label for="question" class="form-label">Question</label>
-          <textarea name="question" id="question" class="form-control" required>{{$question->question}}</textarea>
-        </div>
+          <label for="quiz" class="form-label">Quiz</label>
+          <textarea name="quiz" id="quiz" class="form-control" required>{{$quiz->title}}</textarea>
+          <div class="mb-3">
+        <label for="courseSelect" class="form-label">Select Course</label>
+        <select class="form-select" id="courseSelect" name="course_id">
+            <option value="">Choose a course</option>
+            @foreach($quizzes as $quiz)
+                <option value="{{ $quiz->course->id }}">{{ $quiz->course->title }}</option>
+            @endforeach
+        </select>
+    </div>
         <button type="submit" class="btn btn-primary">Save Changes</button>
       </form>
     </div>
@@ -109,7 +98,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-        <form method="POST" action="{{ route('questions-destroy', ['id' => $question->id]) }}">
+        <form method="POST" action="{{route('app-quiz-destroy',[$id = $quiz->id])}}">
           @csrf
           @method('DELETE')
           <button type="submit" class="btn btn-primary">Delete</button>

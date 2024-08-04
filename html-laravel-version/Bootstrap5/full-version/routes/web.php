@@ -32,6 +32,7 @@ use App\Http\Controllers\authentications\TwoStepsCover;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\charts\ChartJs;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\AnswerController;
 
 
@@ -88,8 +89,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('/add-question', [QuestionController::class, 'create'])->name('question-create');
     Route::delete('/questions/{id}', [QuestionController::class, 'destroy'])->name('questions-destroy');
     Route::put('/questions/{id}', [QuestionController::class, 'update'])->name('questions-update');
-    Route::get('/add-answer', [AnswerController::class, 'create']);
-    Route::post('/add-answer', [AnswerController::class, 'store']); 
-
+    Route::get('/app/quizzes', [QuizController::class, 'index'])->name('app-quizzes');
+   Route::put('app/quizzes/{id}',[QuizController::class, 'update'])->name('app-quiz-update');
+   Route::delete('app/quizzes/{id}', [QuizController::class, 'destroy'])->name('app-quiz-destroy');
 
 });

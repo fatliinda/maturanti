@@ -9,7 +9,6 @@
         "5"
       ],
       "submenu": [
-        
         {
           "url": "app/academy/dashboard",
           "name": "Academy",
@@ -25,24 +24,26 @@
       "icon": "menu-icon tf-icons ti ti-building-factory-2",
       "slug": "app-quizzes",
       "submenu": [
-        
         {
           "name": "Pyetjet",
           "slug": "app-quizzes-question",
           "submenu": [
-           
             {
               "url": "app/ecommerce/product/add",
               "name": "Shto Pyetje",
               "slug": "app-ecommerce-product-add"
             },
             {
-            "url": "laravel/user-management",
-            "name": "Edito pyetjet",
-            "slug": "laravel-example-user-management"
+              "url": "laravel/user-management",
+              "name": "Edito pyetjet",
+              "slug": "laravel-example-user-management"
             }
-          
           ]
+        },
+        {
+          "url":"app/quizzes",
+          "name": "Kuizet",
+          "slug": "app-quizzes"
         }
       ]
     },
@@ -68,7 +69,6 @@
         }
       ]
     },
-    
     {
       "name": "Pages",
       "icon": "menu-icon tf-icons ti ti-file",
@@ -83,7 +83,6 @@
               "name": "Profile",
               "slug": "pages-profile-user"
             },
-        
             {
               "url": "pages/profile-connections",
               "name": "Connections",
@@ -91,7 +90,6 @@
             }
           ]
         }
-    
       ]
     },
     {
@@ -215,6 +213,5 @@
         }
       ]
     }
-    
   ]
 }
