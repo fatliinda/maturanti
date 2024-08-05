@@ -30,6 +30,9 @@
 
 @section('content')
 <!-- Users List Table -->
+<div class="d-flex justify-content-end mb-5">
+            <button type="submit" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddQuiz">Create Quiz</button>
+        </div>
 <div class="card-datatable table-responsive">
     
 
@@ -55,7 +58,7 @@
       </tbody>
     </table>
   </div>
-<!-- Offcanvas to edit question -->
+<!-- Offcanvas to edit quizz -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditQuiz" aria-labelledby="offcanvasEditQuestionLabel">
     <div class="offcanvas-header">
       <h5 id="offcanvasEditQuestionLabel" class="offcanvas-title">Edit Quiz</h5>
@@ -78,6 +81,34 @@
         </select>
     </div>
         <button type="submit" class="btn btn-primary">Save Changes</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Offcanvas to add quizz -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddQuiz" aria-labelledby="offcanvasEditQuestionLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasEditQuestionLabel" class="offcanvas-title">Add Quiz</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body mx-0 flex-grow-0">
+      <form class="edit-question-form pt-0" method="POST" action="{{route('quiz-create')}}">
+        @csrf
+        @method('POST')
+        <div class="mb-3">
+          <label for="quiz" class="form-label">Quiz</label>
+          <input type="text" name="title" id="quiz" class="form-control" placeholder="Emri i kuizit"required></textarea>
+          <div class="mb-3">
+        <label for="courseSelect" class="form-label">Select Course</label>
+        <select class="form-select" id="courseSelect" name="course_id">
+            <option value="">Choose a course</option>
+            @foreach($quizzes as $quiz)
+                <option value="{{ $quiz->course->id }}">{{ $quiz->course->title }}</option>
+            @endforeach
+        </select>
+    </div>
+        <button type="submit" class="btn btn-primary">Add Quiz</button>
       </form>
     </div>
   </div>

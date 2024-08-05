@@ -13,6 +13,20 @@ class QuizController extends Controller
         return view('content.apps.app-quizzes', compact('quizzes'));
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'course_id' => 'required|exists:courses,id',
+        ]);
+
+        Quiz::create([
+            'title' => $request->title,
+            'course_id' => $request->course_id,
+        ]);
+
+        return redirect()->route('app-quizzes')->with('success', 'Quiz created successfully.');
+    }
     public function update(Request $request, $id)
     {
         $request->validate([

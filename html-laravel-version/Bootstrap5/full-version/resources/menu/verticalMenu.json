@@ -44,7 +44,13 @@
           "url":"app/quizzes",
           "name": "Kuizet",
           "slug": "app-quizzes"
+        },
+        {
+          "url":"app/courses",
+          "name": "Kurset",
+          "slug": "app-courses"
         }
+
       ]
     },
     {

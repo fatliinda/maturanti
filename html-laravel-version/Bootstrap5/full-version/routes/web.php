@@ -33,7 +33,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\charts\ChartJs;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
-use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\CourseController;
 
 
 // Main Page Route
@@ -92,5 +92,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/app/quizzes', [QuizController::class, 'index'])->name('app-quizzes');
    Route::put('app/quizzes/{id}',[QuizController::class, 'update'])->name('app-quiz-update');
    Route::delete('app/quizzes/{id}', [QuizController::class, 'destroy'])->name('app-quiz-destroy');
-
+   Route::post('/add-quiz', [QuizController::class, 'store'])->name('quiz-create');
+   Route::get('/app/courses', [CourseController::class, 'index'])->name('app-courses');
+   Route::put('app/courses/{id}',[CourseController::class, 'update'])->name('app-course-update');
+   Route::delete('app/courses/{id}', [CourseController::class, 'destroy'])->name('app-course-destroy');
+   Route::post('/add-course', [CourseController::class, 'store'])->name('course-create');
 });
