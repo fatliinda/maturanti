@@ -1,21 +1,6 @@
 {
   "menu": [
-    {
-      "name": "Dashboards",
-      "icon": "menu-icon tf-icons ti ti-smart-home",
-      "slug": "dashboard",
-      "badge": [
-        "primary",
-        "5"
-      ],
-      "submenu": [
-        {
-          "url": "app/academy/dashboard",
-          "name": "Academy",
-          "slug": "app-academy-dashboard"
-        }
-      ]
-    },
+    
     {
       "menuHeader": "Apps & Pages"
     },
