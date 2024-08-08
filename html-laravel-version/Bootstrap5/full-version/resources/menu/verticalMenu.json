@@ -44,7 +44,7 @@
       "slug": "app-academy",
       "submenu": [
         {
-          "url": "app/academy/dashboard",
+          "url": "/",
           "name": "Dashboard",
           "slug": "app-academy-dashboard"
         },
@@ -52,11 +52,6 @@
           "url": "app/academy/course",
           "name": "My Course",
           "slug": "app-academy-course"
-        },
-        {
-          "url": "app/academy/course-details",
-          "name": "Course Details",
-          "slug": "app-academy-course-details"
         }
       ]
     },

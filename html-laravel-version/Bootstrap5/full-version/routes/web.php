@@ -34,6 +34,7 @@ use App\Http\Controllers\charts\ChartJs;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\TimeLogController;
 
 
 // Main Page Route

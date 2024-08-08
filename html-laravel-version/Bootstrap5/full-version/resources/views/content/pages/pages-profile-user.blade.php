@@ -42,17 +42,15 @@
         <div class="flex-grow-1 mt-3 mt-sm-5">
           <div class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
             <div class="user-profile-info">
-              <h4>John Doe</h4>
+              <h4>{{auth()->user()->name}}</h4>
               <ul class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
                 <li class="list-inline-item d-flex gap-1">
-                  <i class='ti ti-color-swatch'></i> UX Designer
+                  <i class='ti ti-color-swatch'></i> Student
                 </li>
                 <li class="list-inline-item d-flex gap-1">
                   <i class='ti ti-map-pin'></i> Vatican City
                 </li>
-                <li class="list-inline-item d-flex gap-1">
-                  <i class='ti ti-calendar'></i> Joined April 2021
-                </li>
+
               </ul>
             </div>
             <a href="javascript:void(0)" class="btn btn-primary">
@@ -72,8 +70,6 @@
     <ul class="nav nav-pills flex-column flex-sm-row mb-4">
       <li class="nav-item"><a class="nav-link active" href="javascript:void(0);"><i class='ti-xs ti ti-user-check me-1'></i> Profile</a></li>
       <li class="nav-item"><a class="nav-link" href="{{url('pages/profile-teams')}}"><i class='ti-xs ti ti-users me-1'></i> Teams</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{url('pages/profile-projects')}}"><i class='ti-xs ti ti-layout-grid me-1'></i> Projects</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{url('pages/profile-connections')}}"><i class='ti-xs ti ti-link me-1'></i> Connections</a></li>
     </ul>
   </div>
 </div>
@@ -87,9 +83,9 @@
       <div class="card-body">
         <small class="card-text text-uppercase">About</small>
         <ul class="list-unstyled mb-4 mt-3">
-          <li class="d-flex align-items-center mb-3"><i class="ti ti-user text-heading"></i><span class="fw-medium mx-2 text-heading">Full Name:</span> <span>John Doe</span></li>
+          <li class="d-flex align-items-center mb-3"><i class="ti ti-user text-heading"></i><span class="fw-medium mx-2 text-heading">Full Name:</span> <span>{{auth()->user()->name}}</span></li>
           <li class="d-flex align-items-center mb-3"><i class="ti ti-check text-heading"></i><span class="fw-medium mx-2 text-heading">Status:</span> <span>Active</span></li>
-          <li class="d-flex align-items-center mb-3"><i class="ti ti-crown text-heading"></i><span class="fw-medium mx-2 text-heading">Role:</span> <span>Developer</span></li>
+          <li class="d-flex align-items-center mb-3"><i class="ti ti-crown text-heading"></i><span class="fw-medium mx-2 text-heading">Role:</span> <span>Student</span></li>
           <li class="d-flex align-items-center mb-3"><i class="ti ti-flag text-heading"></i><span class="fw-medium mx-2 text-heading">Country:</span> <span>USA</span></li>
           <li class="d-flex align-items-center mb-3"><i class="ti ti-file-description text-heading"></i><span class="fw-medium mx-2 text-heading">Languages:</span> <span>English</span></li>
         </ul>
@@ -97,7 +93,7 @@
         <ul class="list-unstyled mb-4 mt-3">
           <li class="d-flex align-items-center mb-3"><i class="ti ti-phone-call"></i><span class="fw-medium mx-2 text-heading">Contact:</span> <span>(123) 456-7890</span></li>
           <li class="d-flex align-items-center mb-3"><i class="ti ti-brand-skype"></i><span class="fw-medium mx-2 text-heading">Skype:</span> <span>john.doe</span></li>
-          <li class="d-flex align-items-center mb-3"><i class="ti ti-mail"></i><span class="fw-medium mx-2 text-heading">Email:</span> <span>john.doe@example.com</span></li>
+          <li class="d-flex align-items-center mb-3"><i class="ti ti-mail"></i><span class="fw-medium mx-2 text-heading">Email:</span> <span>{{auth()->user()->email}}</span></li>
         </ul>
         <small class="card-text text-uppercase">Teams</small>
         <ul class="list-unstyled mb-0 mt-3">
