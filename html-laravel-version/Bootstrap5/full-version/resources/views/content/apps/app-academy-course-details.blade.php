@@ -21,14 +21,14 @@
 @section('content')
 <div>
     <h4 class="pt-3 mb-0">
-        <span class="text-muted fw-light">Academy /</span> Course Details
+        <span class="text-muted fw-light"></span>Kuizi
     </h4>
     <div class="card g-3 mt-5">
         <div class="card-body">
             <h5 class="mb-2">{{ $course->title }}</h5>
             <p>{{ $course->description }}</p>
             <hr class="my-4">
-            <h5>Quizzes</h5>
+            <h5>Pyetjet</h5>
             <form action="{{ route('submitAnswer', ['id' => $course->id]) }}" method="POST">
                 @csrf
                 @foreach($course->quizzes as $quiz)

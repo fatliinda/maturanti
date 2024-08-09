@@ -24,8 +24,14 @@
 @endsection
 
 @section('content')
-<h4 class="py-3 mb-4"><span class="text-muted fw-light">Academy/</span> My Courses</h4>
-
+<h4 class="py-3 mb-4"><span class="text-muted fw-light">Kuizet</span></h4>
+<div class="card bg-transparent shadow-none my-4 border-0">
+  <div class="card-body row p-0 pb-3">
+    <div class="col-12 col-md-8 card-separator">
+      <h3>Mireseerdhe, {{auth()->user()->name}}👋🏻 </h3>
+</div>
+  </div>
+</div>
 <div class="app-academy">
   <div class="card p-0 mb-4">
     <div class="card-body d-flex flex-column flex-md-row justify-content-between p-0 pt-4">
@@ -34,17 +40,13 @@
       </div>
       <div class="app-academy-md-50 card-body d-flex align-items-md-center flex-column text-md-center">
         <h3 class="card-title mb-4 lh-sm px-md-5 lh-lg">
-          Education, talents, and career opportunities.
-          <span class="text-primary fw-medium text-nowrap">All in one place</span>.
+        Më trego dhe unë harroj. Më mëso dhe mbaj mend.
+          <span class="text-primary fw-medium text-nowrap">Më përfshij dhe mësoj.</span>
         </h3>
         <p class="mb-3">
-          Grow your skill with the most reliable online courses and certifications in marketing, information technology,
-          programming, and data science.
+        Dituria rritet në mënyrë eksponenciale. Sa më shumë që dimë, është më e madhe aftësia jonë për të mësuar dhe më shpejtë zgjerojmë bazën e diturisë sonë.
         </p>
-        <div class="d-flex align-items-center justify-content-between app-academy-md-80">
-          <input type="search" placeholder="Find your course" class="form-control me-2" />
-          <button type="submit" class="btn btn-primary btn-icon"><i class="ti ti-search"></i></button>
-        </div>
+        
       </div>
       <div class="app-academy-md-25 d-flex align-items-end justify-content-end">
         <img src="{{asset('assets/img/illustrations/pencil-rocket.png') }}" alt="pencil rocket" height="188" class="scaleX-n1-rtl" />
@@ -55,28 +57,10 @@
   <div class="card mb-4">
     <div class="card-header d-flex flex-wrap justify-content-between gap-3">
       <div class="card-title mb-0 me-1">
-        <h5 class="mb-1">My Courses</h5>
-        <p class="text-muted mb-0">Total 6 course you have purchased</p>
+        <h5 class="mb-1">Kuizet e mia</h5>
+        <p class="text-muted mb-0">Kuizet nga lendet mesimore</p>
       </div>
-      <div class="d-flex justify-content-md-end align-items-center gap-4 flex-wrap">
-        <select id="select2_course_select" class="select2 form-select" data-placeholder="All Courses">
-          <option value="">All Courses</option>
-          <option value="ui/ux">UI/UX</option>
-          <option value="seo">SEO</option>
-          <option value="web">Web</option>
-          <option value="music">Music</option>
-          <option value="painting">Painting</option>
-        </select>
-
-        <label class="switch">
-          <input type="checkbox" class="switch-input">
-          <span class="switch-toggle-slider">
-            <span class="switch-on"></span>
-            <span class="switch-off"></span>
-          </span>
-          <span class="switch-label text-nowrap mb-0">Hide completed</span>
-        </label>
-      </div>
+    
     </div>
     <div class="card-body">
   <div class="row gy-4 mb-4">
@@ -87,24 +71,13 @@
           <a href="{{url('app/academy/course-details')}}"><img class="img-fluid" src="{{asset('assets/img/pages/app-academy-tutor-'.$loop->iteration.'.png')}}" alt="tutor image {{$loop->iteration}}" /></a>
         </div>
         <div class="card-body p-3 pt-2">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="badge bg-label-primary">{{ $course->category }}</span>
-            <h6 class="d-flex align-items-center justify-content-center gap-1 mb-0">
-              {{ $course->rating }} <span class="text-warning"><i class="ti ti-star-filled me-1 mt-n1"></i></span><span class="text-muted">({{ $course->reviews }})</span>
-            </h6>
-          </div>
-          <a href="{{url('app/academy/course-details')}}" class="h5">{{ $course->title }}</a>
+          
+          <h5>{{ $course->title }}</h5>
           <p class="mt-2">{{ $course->description }}</p>
           <p class="d-flex align-items-center"><i class="ti ti-clock me-2 mt-n1"></i>{{ $course->duration }}</p>
-          <div class="progress mb-4" style="height: 8px">
-            <div class="progress-bar" role="progressbar" style="width: {{ $course->progress }}%" aria-valuenow="{{ $course->progress }}" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
           <div class="d-flex flex-column flex-md-row gap-2 text-nowrap">
-            <a class="app-academy-md-50 btn btn-label-secondary me-md-2 d-flex align-items-center" href="{{url('app/academy/course-details')}}">
-              <i class="ti ti-rotate-clockwise-2 align-middle scaleX-n1-rtl  me-2 mt-n1 ti-sm"></i><span>Start Over</span>
-            </a>
             <a class="app-academy-md-50 btn btn-label-primary d-flex align-items-center" href="{{ route('app-academy-course-details', ['id' => $course->id]) }}">
-              <span class="me-2">Continue</span><i class="ti ti-chevron-right scaleX-n1-rtl ti-sm"></i>
+              <span class="me-2">Fillo</span><i class="ti ti-chevron-right scaleX-n1-rtl ti-sm"></i>
             </a>
           </div>
         </div>
@@ -140,87 +113,4 @@
     </div>    
   </div>
 
-  <div class="row gy-4 mb-4">
-    <div class="col-lg-6">
-      <div class="card bg-label-primary h-100">
-        <div class="card-body d-flex justify-content-between flex-wrap-reverse">
-          <div class="mb-0 w-100 app-academy-sm-60 d-flex flex-column justify-content-between text-center text-sm-start">
-            <div class="card-title">
-              <h4 class="text-primary mb-2">Earn a Certificate</h4>
-              <p class="text-body w-sm-80 app-academy-xl-100">
-                Get the right professional certificate program for you.
-              </p>
-            </div>
-            <div class="mb-0"><button class="btn btn-primary">View Programs</button></div>
-          </div>
-          <div class="w-100 app-academy-sm-40 d-flex justify-content-center justify-content-sm-end h-px-150 mb-3 mb-sm-0">
-            <img class="img-fluid scaleX-n1-rtl" src="{{ asset('assets/img/illustrations/boy-app-academy.png')}}" alt="boy illustration" />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-6">
-      <div class="card bg-label-danger h-100">
-        <div class="card-body d-flex justify-content-between flex-wrap-reverse">
-          <div class="mb-0 w-100 app-academy-sm-60 d-flex flex-column justify-content-between text-center text-sm-start">
-            <div class="card-title">
-              <h4 class="text-danger mb-2">Best Rated Courses</h4>
-              <p class="text-body app-academy-sm-60 app-academy-xl-100">
-                Enroll now in the most popular and best rated courses.
-              </p>
-            </div>
-            <div class="mb-0"><button class="btn btn-danger">View Courses</button></div>
-          </div>
-          <div class="w-100 app-academy-sm-40 d-flex justify-content-center justify-content-sm-end h-px-150 mb-3 mb-sm-0">
-            <img class="img-fluid scaleX-n1-rtl" src="{{asset('assets/img/illustrations/girl-app-academy.png')}}" alt="girl illustration" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-body row gy-4">
-      <div class="col-sm-12 col-lg-4 text-center pt-md-5 px-3">
-        <span class="badge bg-label-primary p-2 mb-3"><i class="ti ti-gift ti-lg"></i></span>
-        <h3 class="card-title mb-4">Today's Free Courses</h3>
-        <p class="card-text mb-4">
-          We offers 284 Free Online courses from top tutors and companies to help you start or advance your career
-          skills. Learn online for free and fast today!
-        </p>
-        <button class="btn btn-primary">Get premium courses</button>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card h-100 border shadow-none">
-          <div class="p-2 pb-0">
-            <video poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" id="guitar-video-player" playsinline controls>
-              <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Your First Singing Lesson</h5>
-            <p class="card-text">
-              In the same way as any other artistic domain, singing lends itself perfectly to self-teaching.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card h-100 border shadow-none">
-          <div class="p-2 pb-0">
-            <video poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" id="guitar-video-player-2" playsinline controls>
-              <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Guitar for Beginners</h5>
-            <p class="card-text">
-              The Fender Acoustic Guitar is the best choice for both beginners and professionals offering a great sound.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 @endsection

@@ -38,7 +38,7 @@ use App\Http\Controllers\TimeLogController;
 
 
 // Main Page Route
-Route::get('/', [AcademyDashboard::class, 'index'])->name('app-academy-dashboard');
+Route::get('/', [AcademyCourse::class, 'index'])->name('app-academy-course');
 // locale
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 
@@ -47,7 +47,7 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 
 // apps
 Route::get('/app/ecommerce/product/add', [EcommerceProductAdd::class, 'index'])->name('app-ecommerce-product-add');
-Route::get('/app/academy/course', [AcademyCourse::class, 'index'])->name('app-academy-course');
+
 Route::get('/app/academy/course-details/{id}', [AcademyCourseDetails::class, 'index'])->name('app-academy-course-details');
 Route::post('/courses/{id}/submit', [AcademyCourseDetails::class, 'submitAnswer'])->name('submitAnswer');
 
@@ -74,14 +74,13 @@ Route::get('/auth/two-steps-basic', [TwoStepsBasic::class, 'index'])->name('auth
 Route::get('/auth/two-steps-cover', [TwoStepsCover::class, 'index'])->name('auth-two-steps-cover');
 
 // laravel example
-Route::get('/laravel/user-management', [QuestionController::class, 'manage'])->name('question-managment');
-Route::get('/charts/chartjs', [ChartJs::class, 'index'])->name('charts-chartjs');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/', [AcademyDashboard::class, 'index'])->name('app-academy-dashboard');
+    Route::get('/', [AcademyCourse::class, 'index'])->name('app-academy-course');
 });
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
