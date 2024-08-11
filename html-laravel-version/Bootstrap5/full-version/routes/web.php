@@ -84,7 +84,7 @@ Route::middleware([
 });
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
-    Route::get('/app/ecommerce/product/add', [QuestionController::class, 'index'])->name('app-ecommerce-product-add');
+    Route::get('/app/question/add', [QuestionController::class, 'index'])->name('app-question-add');
     
     Route::post('/add-question', [QuestionController::class, 'create'])->name('question-create');
     Route::delete('/questions/{id}', [QuestionController::class, 'destroy'])->name('questions-destroy');

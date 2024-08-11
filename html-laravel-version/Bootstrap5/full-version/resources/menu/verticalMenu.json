@@ -14,7 +14,7 @@
           "slug": "app-quizzes-question",
           "submenu": [
             {
-              "url": "app/ecommerce/product/add",
+              "url": "app/question/add",
               "name": "Shto Pyetje",
               "slug": "app-ecommerce-product-add"
             },

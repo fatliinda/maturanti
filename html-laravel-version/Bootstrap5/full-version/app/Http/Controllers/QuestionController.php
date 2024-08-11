@@ -14,7 +14,7 @@ class QuestionController extends Controller
     public function index()
   {
     $quizzes = Quiz::all();
-    return view('content.apps.app-ecommerce-product-add', compact('quizzes'));
+    return view('content.apps.app-add-question', compact('quizzes'));
   }
     public function create(Request $request){
         
@@ -40,7 +40,7 @@ class QuestionController extends Controller
         }
         
 
-        return redirect()->route('app-ecommerce-product-add')->with('success', 'Question added successfully.');
+        return redirect()->route('app-question-add')->with('success', 'Question added successfully.');
     }
     public function manage(Request $request){
         $quizzes = Quiz::all();
