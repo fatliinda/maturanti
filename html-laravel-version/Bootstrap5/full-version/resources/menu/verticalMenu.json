@@ -14,15 +14,17 @@
           "slug": "app-quizzes-question",
           "submenu": [
             {
+              "url": "/questions/",
+              "name": "Pyetjet",
+              "slug": "app-quizzes-question"
+            },
+            
+            {
               "url": "app/question/add",
               "name": "Shto Pyetje",
               "slug": "app-ecommerce-product-add"
-            },
-            {
-              "url": "laravel/user-management",
-              "name": "Edito pyetjet",
-              "slug": "laravel-example-user-management"
             }
+            
           ]
         },
         {

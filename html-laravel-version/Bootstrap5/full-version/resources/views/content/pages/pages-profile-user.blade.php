@@ -53,9 +53,7 @@
 
               </ul>
             </div>
-            <a href="javascript:void(0)" class="btn btn-primary">
-              <i class='ti ti-check me-1'></i>Ndrysho te dhenat
-            </a>
+            
           </div>
         </div>
       </div>

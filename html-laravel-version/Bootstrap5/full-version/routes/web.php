@@ -54,7 +54,9 @@ Route::post('/courses/{id}/submit', [AcademyCourseDetails::class, 'submitAnswer'
 // pages
 Route::get('/pages/profile-user', [UserProfile::class, 'index'])->name('pages-profile-user');
 Route::get('/pages/profile-connections', [UserConnections::class, 'index'])->name('pages-profile-connections');
-
+Route::get('/load-edit', function () {
+    return view('edit'); 
+});
 
 // authentication
 Route::post('/auth/login', [LoginBasic::class, 'login'])->name('loginuser');
@@ -89,12 +91,14 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('/add-question', [QuestionController::class, 'create'])->name('question-create');
     Route::delete('/questions/{id}', [QuestionController::class, 'destroy'])->name('questions-destroy');
     Route::put('/questions/{id}', [QuestionController::class, 'update'])->name('questions-update');
+    Route::get('/questions/', [QuestionController::class, 'index'])->name('questions');
+
     Route::get('/app/quizzes', [QuizController::class, 'index'])->name('app-quizzes');
-   Route::put('app/quizzes/{id}',[QuizController::class, 'update'])->name('app-quiz-update');
-   Route::delete('app/quizzes/{id}', [QuizController::class, 'destroy'])->name('app-quiz-destroy');
-   Route::post('/add-quiz', [QuizController::class, 'store'])->name('quiz-create');
-   Route::get('/app/courses', [CourseController::class, 'index'])->name('app-courses');
-   Route::put('app/courses/{id}',[CourseController::class, 'update'])->name('app-course-update');
-   Route::delete('app/courses/{id}', [CourseController::class, 'destroy'])->name('app-course-destroy');
-   Route::post('/add-course', [CourseController::class, 'store'])->name('course-create');
+    Route::put('app/quizzes/{id}',[QuizController::class, 'update'])->name('app-quiz-update');
+    Route::delete('app/quizzes/{id}', [QuizController::class, 'destroy'])->name('app-quiz-destroy');
+    Route::post('/add-quiz', [QuizController::class, 'store'])->name('quiz-create');
+    Route::get('/app/courses', [CourseController::class, 'index'])->name('app-courses');
+    Route::put('app/courses/{id}',[CourseController::class, 'update'])->name('app-course-update');
+    Route::delete('app/courses/{id}', [CourseController::class, 'destroy'])->name('app-course-destroy');
+    Route::post('/add-course', [CourseController::class, 'store'])->name('course-create');
 });

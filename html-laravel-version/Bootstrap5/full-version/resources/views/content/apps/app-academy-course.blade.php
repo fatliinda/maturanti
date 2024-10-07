@@ -68,7 +68,7 @@
     <div class="col-sm-6 col-lg-4">
       <div class="card p-2 h-100 shadow-none border">
         <div class="rounded-2 text-center mb-3">
-          <a href="{{url('app/academy/course-details')}}"><img class="img-fluid" src="{{asset('assets/img/pages/app-academy-tutor-'.$loop->iteration.'.png')}}" alt="tutor image {{$loop->iteration}}" /></a>
+          <a href="{{ route('app-academy-course-details', ['id' => $course->id]) }}"><img class="img-fluid" src="{{asset('assets/img/pages/app-academy-tutor-'.$loop->iteration.'.png')}}" alt="tutor image {{$loop->iteration}}" /></a>
         </div>
         <div class="card-body p-3 pt-2">
           

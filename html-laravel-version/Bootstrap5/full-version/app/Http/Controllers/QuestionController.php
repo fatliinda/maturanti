@@ -11,18 +11,26 @@ use Illuminate\Support\Facades\Log;
 
 class QuestionController extends Controller
 {
-    public function index()
+    public function index(){
+        $questions = Question::all();
+        $quizzes = Quiz::all();
+        return view('content.apps.app-questions', compact('questions','quizzes'));
+    }
+    
+    
+    public function addQuestionView()
   {
     $quizzes = Quiz::all();
     return view('content.apps.app-add-question', compact('quizzes'));
   }
+
     public function create(Request $request){
         
 
         $validated = $request->validate([
             'question-text' => 'required|string|max:255',
             'quiz_id' => 'required',
-            'answers.*.answer-text' => 'required|string|max:255', // Each answer text
+            'answers.*.answer-text' => 'required|string|max:255', 
         'answers.*.is_correct' => 'sometimes|boolean',
         ]);
 
