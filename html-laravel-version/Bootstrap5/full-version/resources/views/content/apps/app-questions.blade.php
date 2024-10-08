@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Quizzes Management - Crud App')
+@section('title', 'questions Management - Crud App')
 
 @section('vendor-style')
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
@@ -29,13 +29,8 @@
 @endsection
 
 @section('content')
-<!-- Users List Table -->
-<div class="d-flex justify-content-end mb-5">
-            <button type="submit" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddQuiz">Create Quiz</button>
-        </div>
-<div class="card-datatable table-responsive">
-    
 
+<div class="card-datatable table-responsive">
     <table class="datatables-users table">
       <thead class="border-top">
         <tr>
@@ -47,96 +42,72 @@
       <tbody>
         @foreach($questions as $question)
           <tr>
-            <td>{{ $question->question}}</td>
-            <td>{{$question->quiz->title}}</td>
+            <td>{{ $question->question }}</td>
+            <td>{{ $question->quiz->title }}</td>
             <td>
-                <button  class="btn btn-link p-1 m-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEditQuestion"><i class="fa-regular fa-pen-to-square"></i></button>
-                <button  class="btn btn-link p-1 m-1" data-bs-toggle="modal" data-bs-target="#modalTop"><i class="fa-solid fa-trash"></i></button>
+                <button class="btn btn-link p-1 m-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEditQuestion{{ $question->id }}"><i class="fa-regular fa-pen-to-square"></i></button>
+                <button class="btn btn-link p-1 m-1" data-bs-toggle="modal" data-bs-target="#modalTop{{ $question->id }}"><i class="fa-solid fa-trash"></i></button>
             </td>
           </tr>
+
+          <!-- Offcanvas to edit question -->
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditQuestion{{ $question->id }}" aria-labelledby="offcanvasEditquestionLabel">
+              <div class="offcanvas-header">
+                <h5 id="offcanvasEditquestionLabel" class="offcanvas-title">Edit question</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body mx-0 flex-grow-0">
+                <form class="edit-question-form pt-0" method="POST" action="{{route('questions-update',[$id=$question->id])}}">
+                  @csrf
+                  @method('PUT')
+                  <div class="mb-3">
+                    <label for="question" class="form-label">question</label>
+                    <input type="text" name="question" id="question{{ $question->id }}" class="form-control" value="{{ $question->question }}" required>
+                  </div>
+                  <div class="mb-3">
+                  <label for="quizSelect" class="form-label">Select Quiz</label>
+        <select class="form-select" id="quizSelect" name="quiz_id">
+            <option value="">Choose a quiz</option>
+            @foreach($quizzes as $quiz)
+                <option value="{{ $quiz->id}}">{{ $quiz->title }}</option>
+            @endforeach
+        </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+              </div>
+          </div>
+
+          <!-- Modal for delete confirmation -->
+          <div class="modal modal-top fade" id="modalTop{{ $question->id }}" tabindex="-1">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalTopTitle{{ $question->id }}">
+                    <i class="fa-solid fa-triangle-exclamation text-warning me-2"></i> Confirm Deletion
+                  </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to delete this?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+                  <form method="POST" action="{{route('questions-destroy',[$id = $question->id])}}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         @endforeach
       </tbody>
     </table>
-  </div>
-<!-- Offcanvas to edit quizz -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditQuestion" aria-labelledby="offcanvasEditQuestionLabel">
-    <div class="offcanvas-header">
-      <h5 id="offcanvasEditQuestionLabel" class="offcanvas-title">Edit Question</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body mx-0 flex-grow-0">
-      <form class="edit-question-form pt-0" method="POST" action="">
-        @csrf
-        @method('PUT')
-        <div class="mb-3">
-          <label for="question" class="form-label">Question </label>
-          <textarea name="question" id="question" class="form-control" required>{{$question->question}}</textarea>
-          <div class="mb-3">
-        <label for="courseSelect" class="form-label">Select Course</label>
-        <select class="form-select" id="courseSelect" name="course_id">
-            <option value="">Choose a course</option>
-            @foreach($quizzes as $quiz)
-                <option value="{{ $quiz->course->id }}">{{ $quiz->course->title }}</option>
-            @endforeach
-        </select>
-    </div>
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-      </form>
-    </div>
-  </div>
 </div>
 
-<!-- Offcanvas to add quizz -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddQuiz" aria-labelledby="offcanvasEditQuestionLabel">
-    <div class="offcanvas-header">
-      <h5 id="offcanvasEditQuestionLabel" class="offcanvas-title">Add Quiz</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body mx-0 flex-grow-0">
-      <form class="edit-question-form pt-0" method="POST" action="{{route('quiz-create')}}">
-        @csrf
-        @method('POST')
-        <div class="mb-3">
-          <label for="quiz" class="form-label">Quiz</label>
-          <input type="text" name="title" id="quiz" class="form-control" placeholder="Emri i kuizit"required></textarea>
-          <div class="mb-3">
-        <label for="courseSelect" class="form-label">Select Course</label>
-        <select class="form-select" id="courseSelect" name="course_id">
-            <option value="">Choose a course</option>
-            @foreach($quizzes as $quiz)
-                <option value="{{ $quiz->course->id }}">{{ $quiz->course->title }}</option>
-            @endforeach
-        </select>
-    </div>
-        <button type="submit" class="btn btn-primary">Add Quiz</button>
-      </form>
-    </div>
-  </div>
-</div>
+<!-- Offcanvas to add question -->
 
-<!-- Modal -->
-<div class="modal modal-top fade" id="modalTop" tabindex="-1">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalTopTitle">
-          <i class="fa-solid fa-triangle-exclamation text-warning me-2"></i> Confirm Deletion
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to delete this?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-        <form method="POST" action="{{route('app-quiz-destroy',[$id = $quiz->id])}}">
-          @csrf
-          @method('DELETE')
-          <button type="submit" class="btn btn-primary">Delete</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
 @endsection

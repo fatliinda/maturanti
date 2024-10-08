@@ -65,9 +65,9 @@ class QuestionController extends Controller
     
         if ($question) {
             $question->delete();
-            return redirect()->route('question-managment')->with('success', 'Question deleted successfully.');
+            return redirect()->route('questions')->with('success', 'Question deleted successfully.');
         } else {
-            return redirect()->route('question-managment')->with('error', 'Question not found.');
+            return redirect()->route('questions')->with('error', 'Question not found.');
         }
     }
     public function update(Request $request, $id)
@@ -81,12 +81,13 @@ class QuestionController extends Controller
         if ($question) {
            
             $question->question = $request->input('question');
+            $question->quiz_id = $request->input('quiz_id');
             $question->save();
 
-            return redirect()->route('question-managment')->with('success', 'Question updated successfully.');
+            return redirect()->route('questions')->with('success', 'Question updated successfully.');
         } else {
             
-            return redirect()->route('question-managment')->with('error', 'Question not found.');
+            return redirect()->route('questions')->with('error', 'Question not found.');
         }
     }
 }

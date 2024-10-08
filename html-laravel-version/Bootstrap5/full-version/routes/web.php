@@ -86,11 +86,12 @@ Route::middleware([
 });
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
-    Route::get('/app/question/add', [QuestionController::class, 'index'])->name('app-question-add');
+    Route::get('/app/question/add', [QuestionController::class, 'addQuestionView'])->name('app-question-add');
     
     Route::post('/add-question', [QuestionController::class, 'create'])->name('question-create');
     Route::delete('/questions/{id}', [QuestionController::class, 'destroy'])->name('questions-destroy');
-    Route::put('/questions/{id}', [QuestionController::class, 'update'])->name('questions-update');
+    Route::put('app/questions/{id}', [QuestionController::class, 'update'])->name('questions-update');
+
     Route::get('/questions/', [QuestionController::class, 'index'])->name('questions');
 
     Route::get('/app/quizzes', [QuizController::class, 'index'])->name('app-quizzes');
